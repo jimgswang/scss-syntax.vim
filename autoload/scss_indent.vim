@@ -24,6 +24,10 @@ fun! scss_indent#GetIndent(lnum)
       " } line and last line was }: decrease
       return last - &sw
     endif
+    elseif !empty(m_curr) && m_curr[1] == '/' && m[1] == '/'
+      " / line and last line was /: decrease
+      return last - &sw
+    endif
     if m[1] == '{'
       " line after {: increase indent
       return last + &sw
